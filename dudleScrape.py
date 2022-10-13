@@ -39,5 +39,3 @@ for i in range(len(Ticks)):
 
 Results = pd.DataFrame({'positions': Positions, 'names':names}).sort_values(by=['positions'])
 print(Results)
-
-print("this is a test")
