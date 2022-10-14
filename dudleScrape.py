@@ -2,6 +2,8 @@ import pandas as pd
 from requests_html import HTMLSession
 
 names = []
+Ticks = []
+Positions = []
 #create the session
 session = HTMLSession()
 
@@ -15,8 +17,6 @@ r = session.get(url)
 nParticipant = len(r.html.find('.participantrow'))
 
 
-Ticks = []
-Positions = []
 for j in range(nParticipant):
     #Get names and meeting durations:
     participantRow = r.html.find('.participantrow')
@@ -33,8 +33,8 @@ for j in range(nParticipant):
     
 
 for i in range(len(Ticks)):
-    Positions.append(Ticks[i].index('✔'))
+    Positions.append(Ticks[i].index('✔')) #get position of tick marks
 
-
+#compile all to dataframe:
 Results = pd.DataFrame({'positions': Positions, 'names':names}).sort_values(by=['positions'])
 print(Results)
